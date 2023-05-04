@@ -120,7 +120,7 @@ namespace removebackground
             this.сброситьИзмененияButton.TabIndex = 3;
             this.сброситьИзмененияButton.Text = "Сбросить изменения";
             this.сброситьИзмененияButton.UseVisualStyleBackColor = true;
-            this.сброситьИзмененияButton.Click += new System.EventHandler(this.сброситьИзмененияButton_Click);
+            this.сброситьИзмененияButton.Click += new System.EventHandler(this.СброситьИзмененияButton_Click);
             // 
             // обработатьФонButton
             // 
@@ -130,7 +130,7 @@ namespace removebackground
             this.обработатьФонButton.TabIndex = 2;
             this.обработатьФонButton.Text = "Обработать фон";
             this.обработатьФонButton.UseVisualStyleBackColor = true;
-            this.обработатьФонButton.Click += new System.EventHandler(this.обработатьФонButton_Click);
+            this.обработатьФонButton.Click += new System.EventHandler(this.ОбработатьФонButton_Click);
             // 
             // trackBar2
             // 
@@ -169,14 +169,14 @@ namespace removebackground
             this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
             this.открытьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.открытьToolStripMenuItem.Text = "Открыть";
-            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
+            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьToolStripMenuItem_Click);
             // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
             this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.сохранитьToolStripMenuItem.Text = "Сохранить";
-            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.СохранитьToolStripMenuItem_Click);
             // 
             // опцииToolStripMenuItem
             // 
@@ -197,7 +197,7 @@ namespace removebackground
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
             this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить фон";
-            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.ОпцииToolStripMenuItem_Click);
             // 
             // сделатьСплошнымToolStripMenuItem
             // 
@@ -205,7 +205,7 @@ namespace removebackground
             this.сделатьСплошнымToolStripMenuItem.Name = "сделатьСплошнымToolStripMenuItem";
             this.сделатьСплошнымToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.сделатьСплошнымToolStripMenuItem.Text = "Сделать сплошным";
-            this.сделатьСплошнымToolStripMenuItem.Click += new System.EventHandler(this.сделатьСплошнымToolStripMenuItem_Click);
+            this.сделатьСплошнымToolStripMenuItem.Click += new System.EventHandler(this.ОпцииToolStripMenuItem_Click);
             // 
             // осветлитьToolStripMenuItem
             // 
@@ -213,7 +213,7 @@ namespace removebackground
             this.осветлитьToolStripMenuItem.Name = "осветлитьToolStripMenuItem";
             this.осветлитьToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.осветлитьToolStripMenuItem.Text = "Осветлить";
-            this.осветлитьToolStripMenuItem.Click += new System.EventHandler(this.осветлитьToolStripMenuItem_Click);
+            this.осветлитьToolStripMenuItem.Click += new System.EventHandler(this.ОпцииToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -226,7 +226,7 @@ namespace removebackground
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseClick);
             // 
             // openFileDialog1
             // 
