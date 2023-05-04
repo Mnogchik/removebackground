@@ -29,9 +29,10 @@ namespace removebackground
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.сброситьИзмененияButton = new System.Windows.Forms.Button();
             this.обработатьФонButton = new System.Windows.Forms.Button();
@@ -47,7 +48,6 @@ namespace removebackground
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -55,7 +55,6 @@ namespace removebackground
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -69,6 +68,8 @@ namespace removebackground
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.сброситьИзмененияButton);
             this.splitContainer1.Panel1.Controls.Add(this.обработатьФонButton);
@@ -84,11 +85,28 @@ namespace removebackground
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(781, 31);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(58, 45);
+            this.panel1.TabIndex = 5;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(777, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Цвет фона";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(66, 34);
+            this.label1.Location = new System.Drawing.Point(5, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 21);
             this.label1.TabIndex = 1;
@@ -96,7 +114,7 @@ namespace removebackground
             // 
             // сброситьИзмененияButton
             // 
-            this.сброситьИзмененияButton.Location = new System.Drawing.Point(665, 34);
+            this.сброситьИзмененияButton.Location = new System.Drawing.Point(604, 33);
             this.сброситьИзмененияButton.Name = "сброситьИзмененияButton";
             this.сброситьИзмененияButton.Size = new System.Drawing.Size(134, 35);
             this.сброситьИзмененияButton.TabIndex = 3;
@@ -106,7 +124,7 @@ namespace removebackground
             // 
             // обработатьФонButton
             // 
-            this.обработатьФонButton.Location = new System.Drawing.Point(541, 34);
+            this.обработатьФонButton.Location = new System.Drawing.Point(480, 33);
             this.обработатьФонButton.Name = "обработатьФонButton";
             this.обработатьФонButton.Size = new System.Drawing.Size(118, 35);
             this.обработатьФонButton.TabIndex = 2;
@@ -116,11 +134,13 @@ namespace removebackground
             // 
             // trackBar2
             // 
-            this.trackBar2.Location = new System.Drawing.Point(211, 32);
+            this.trackBar2.Location = new System.Drawing.Point(150, 33);
+            this.trackBar2.Maximum = 441;
             this.trackBar2.Minimum = 1;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(324, 45);
             this.trackBar2.TabIndex = 1;
+            this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar2.Value = 1;
             // 
             // menuStrip1
@@ -199,16 +219,14 @@ namespace removebackground
             // 
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::removebackground.Properties.Resources._1587229750_7_p_foni_s_zhivotnimi_dlya_windows_11;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(852, 531);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
             // 
             // openFileDialog1
             // 
@@ -217,10 +235,6 @@ namespace removebackground
             // saveFileDialog1
             // 
             this.saveFileDialog1.Filter = "Images|*.jpg;*.png;*.bmp";
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
             // 
             // Form1
             // 
@@ -241,7 +255,6 @@ namespace removebackground
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -264,7 +277,8 @@ namespace removebackground
         private System.Windows.Forms.ToolStripMenuItem сделатьСплошнымToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem осветлитьToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
