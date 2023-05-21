@@ -31,10 +31,11 @@ namespace removebackground
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.сброситьИзмененияButton = new System.Windows.Forms.Button();
             this.обработатьФонButton = new System.Windows.Forms.Button();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -68,10 +69,11 @@ namespace removebackground
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnReturn);
+            this.splitContainer1.Panel1.Controls.Add(this.btnCancel);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.сброситьИзмененияButton);
             this.splitContainer1.Panel1.Controls.Add(this.обработатьФонButton);
             this.splitContainer1.Panel1.Controls.Add(this.trackBar2);
             this.splitContainer1.Panel1.Controls.Add(this.menuStrip1);
@@ -84,6 +86,30 @@ namespace removebackground
             this.splitContainer1.SplitterDistance = 81;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // btnReturn
+            // 
+            this.btnReturn.BackgroundImage = global::removebackground.Properties.Resources.redo;
+            this.btnReturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReturn.Enabled = false;
+            this.btnReturn.Location = new System.Drawing.Point(660, 39);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(23, 23);
+            this.btnReturn.TabIndex = 7;
+            this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackgroundImage = global::removebackground.Properties.Resources.undo;
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCancel.Enabled = false;
+            this.btnCancel.Location = new System.Drawing.Point(631, 39);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(23, 23);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // panel1
             // 
@@ -111,16 +137,6 @@ namespace removebackground
             this.label1.Size = new System.Drawing.Size(139, 21);
             this.label1.TabIndex = 1;
             this.label1.Text = "Чувствительность";
-            // 
-            // сброситьИзмененияButton
-            // 
-            this.сброситьИзмененияButton.Location = new System.Drawing.Point(604, 33);
-            this.сброситьИзмененияButton.Name = "сброситьИзмененияButton";
-            this.сброситьИзмененияButton.Size = new System.Drawing.Size(134, 35);
-            this.сброситьИзмененияButton.TabIndex = 3;
-            this.сброситьИзмененияButton.Text = "Сбросить изменения";
-            this.сброситьИзмененияButton.UseVisualStyleBackColor = true;
-            this.сброситьИзмененияButton.Click += new System.EventHandler(this.СброситьИзмененияButton_Click);
             // 
             // обработатьФонButton
             // 
@@ -234,7 +250,7 @@ namespace removebackground
             // 
             // saveFileDialog1
             // 
-            this.saveFileDialog1.Filter = "Images|*.jpg;*.png;*.bmp";
+            this.openFileDialog1.Filter = "Images| *.bmp;*.png;*.jpg";
             // 
             // Form1
             // 
@@ -265,7 +281,6 @@ namespace removebackground
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button сброситьИзмененияButton;
         private System.Windows.Forms.Button обработатьФонButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
@@ -279,6 +294,8 @@ namespace removebackground
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnReturn;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 

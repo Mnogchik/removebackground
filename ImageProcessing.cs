@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace removebackground
 {
     class ImageProcessing
     {
-        private Bitmap image;
-        public int threshold;
+        private readonly Bitmap image;
+        public readonly int threshold;
 
         public ImageProcessing(Bitmap image, int threshold)
         {
@@ -15,11 +16,7 @@ namespace removebackground
             this.threshold = threshold;
         }
 
-        public ImageProcessing(Image image, int threshold)
-        {
-            this.image = new Bitmap(image);
-            this.threshold = threshold;
-        }
+        public ImageProcessing(Image image, int threshold) : this(new Bitmap(image), threshold) { }
 
         public Bitmap DeleteBackground(Color backgroundColor)
         {
@@ -77,23 +74,10 @@ namespace removebackground
         //возвращает список пикселей, которые являются частью фона(основной алгоритм)
         private List<Pixel> GetBackground(List<Pixel> allPixels, Color backgroundColor)
         {
-            List<Pixel> backgroundPixels = new List<Pixel>(allPixels.Count);
-
-            foreach (var pixel in allPixels)
-            {
-                Color pixelColor = pixel.Color;
-
-                if (ColorDistance(pixelColor, backgroundColor) < threshold)
-                {
-                    backgroundPixels.Add(pixel);
-                }
-
-            }
-
-            return backgroundPixels;
+            return allPixels.Where(pixel => ColorDistance(pixel.Color, backgroundColor) < threshold).ToList();
         }
 
-        private static int ColorDistance(Color c1, Color c2)
+        private int ColorDistance(Color c1, Color c2)
         {
             int rDiff = c1.R - c2.R;
             int gDiff = c1.G - c2.G;

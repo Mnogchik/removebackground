@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Threading;
-using System.Drawing.Imaging;
 
 namespace removebackground
 {
     public partial class Form1 : Form
     {
-        Color backgroundColor = Color.Empty;
-        Bitmap originalImage;
+        private Color backgroundColor = Color.Empty;
+        private Bitmap originalImage;
+        private Stack<Image> stackPreviousImages = new Stack<Image>();
+        private Stack<Image> stackCancelledImages = new Stack<Image>();
 
         public Form1()
         {
@@ -45,11 +41,11 @@ namespace removebackground
                     {
                         pictureBox1.Image.Save(saveFileDialog1.FileName);
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Изображение не удалось сохранить", "Ошибка",
+                        MessageBox.Show("Изображение не удалось сохранить: " + ex.Message, "Ошибка",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }                    
+                    }
                 }
             }
         }
@@ -68,11 +64,17 @@ namespace removebackground
             if (pictureBox1.Image == null || backgroundColor == Color.Empty)
                 return;
 
+            stackPreviousImages.Push(pictureBox1.Image);
+            btnCancel.Enabled = true;
+            stackCancelledImages.Clear();
+            btnReturn.Enabled = false;
+
             ImageProcessing imageProcessing = new ImageProcessing(pictureBox1.Image, trackBar2.Value);
 
             if (удалитьToolStripMenuItem.Checked)
             {
                 var sw = Stopwatch.StartNew();
+
                 pictureBox1.Image = imageProcessing.DeleteBackground(backgroundColor);
                 sw.Stop();
                 MessageBox.Show("Обработка изображения выполнена за " + (sw.ElapsedMilliseconds / 1000.0).ToString() + " с.", "Обработка завершена",
@@ -104,18 +106,6 @@ namespace removebackground
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        private void СброситьИзмененияButton_Click(object sender, EventArgs e)
-        {
-            if (pictureBox1.Image != null)
-            {
-                var result = MessageBox.Show("Вы уверены, что хотите сбросить изменения?", "Предупреждение",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                if (result == DialogResult.Yes)
-                {
-                    pictureBox1.Image = originalImage;
-                }
-            }
-        }
         private void PictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
             Point coord = GetRealCoords(e.X, e.Y);
@@ -123,9 +113,36 @@ namespace removebackground
 
             panel1.BackColor = backgroundColor;
         }
+
         private Point GetRealCoords(int x, int y)
         {
             return new Point() { X = (int)(1f * x * pictureBox1.Image.Width / pictureBox1.ClientSize.Width), Y = (int)(1f * y * pictureBox1.Image.Height / pictureBox1.ClientSize.Height) };
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            btnReturn.Enabled = true;
+            stackCancelledImages.Push(pictureBox1.Image);
+
+            pictureBox1.Image = stackPreviousImages.Pop();
+
+            if (stackPreviousImages.Count == 0)
+            {
+                btnCancel.Enabled = false;
+            }
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            btnCancel.Enabled = true;
+            stackPreviousImages.Push(pictureBox1.Image);
+
+            pictureBox1.Image = stackCancelledImages.Pop();
+
+            if (stackCancelledImages.Count == 0)
+            {
+                btnReturn.Enabled = false;
+            }
         }
     }
 }
